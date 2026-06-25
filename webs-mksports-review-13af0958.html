@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>mk体育 · 你的赛事信息入口</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f4f6f9;
+            color: #1e2a3a;
+            line-height: 1.6;
+            padding: 2rem 1rem 3rem;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        /* ------ hero ------ */
+        .hero {
+            background: linear-gradient(145deg, #f9fafc 0%, #eef1f5 100%);
+            border-radius: 28px;
+            padding: 3.2rem 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #111d2a;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            background: #d9e2ec;
+            padding: 0 10px 2px;
+            border-radius: 30px;
+            font-weight: 450;
+            color: #0a1929;
+        }
+
+        .hero p {
+            font-size: 1.18rem;
+            color: #2c3e4f;
+            max-width: 640px;
+            margin-bottom: 1.8rem;
+        }
+
+        .hero .tagline {
+            background: #ffffffcc;
+            backdrop-filter: blur(2px);
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            border: 1px solid #d3dee8;
+            color: #1f3a4a;
+        }
+
+        /* ------ 卡片通用 ------ */
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 2.2rem;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e4e9f0;
+            transition: box-shadow 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 22px rgba(0, 10, 30, 0.04);
+        }
+
+        .card h2 {
+            font-weight: 500;
+            font-size: 1.7rem;
+            margin-bottom: 1.5rem;
+            color: #152b3a;
+            letter-spacing: -0.01em;
+            border-left: 4px solid #809bb0;
+            padding-left: 1rem;
+        }
+
+        .card h3 {
+            font-weight: 500;
+            font-size: 1.2rem;
+            margin: 1.2rem 0 0.6rem;
+            color: #1d3547;
+        }
+
+        .card p, .card li {
+            color: #2f4052;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0.5rem;
+        }
+
+        .card ul li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #6a8a9f;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin-top: 0.8rem;
+        }
+
+        .feature-item {
+            background: #f7f9fc;
+            border-radius: 14px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #e9eef4;
+            transition: background 0.1s;
+        }
+
+        .feature-item p {
+            font-size: 0.96rem;
+            margin-top: 0.2rem;
+        }
+
+        .feature-item strong {
+            color: #15303e;
+        }
+
+        /* ------ FAQ摘要 ------ */
+        .faq-item {
+            border-bottom: 1px solid #e9eef4;
+            padding: 1rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: 0;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #1e3748;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-a {
+            color: #405a6a;
+            font-size: 0.96rem;
+            line-height: 1.5;
+        }
+
+        .faq-a a {
+            color: #1c5775;
+            text-decoration: none;
+            border-bottom: 1px dotted #95b1c0;
+        }
+
+        .faq-a a:hover {
+            border-bottom-style: solid;
+            color: #0e3a4f;
+        }
+
+        /* ------ 底部链接区 ------ */
+        .footer-links {
+            margin-top: 2.2rem;
+            padding: 1.6rem 0 0.2rem;
+            border-top: 1px solid #dce3ec;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #4b6275;
+        }
+
+        .footer-links a {
+            color: #1c5775;
+            text-decoration: none;
+            font-weight: 450;
+            border-bottom: 1px solid transparent;
+            transition: border 0.1s;
+        }
+
+        .footer-links a:hover {
+            border-bottom-color: #4f7c93;
+        }
+
+        .footer-links .sep {
+            margin: 0 0.8rem;
+            color: #a0b4c2;
+        }
+
+        .footer-note {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #6f8496;
+        }
+
+        /* ------ 响应式 ------ */
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.8rem 2rem;
+            }
+
+            .hero {
+                padding: 2rem 1.4rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 1.5rem 1.2rem;
+            }
+
+            .grid-2col {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .card h2 {
+                font-size: 1.4rem;
+            }
+
+            .footer-links {
+                font-size: 0.88rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* 随机细节呼吸感 */
+        .soft-highlight {
+            background: #eaf0f6;
+            border-radius: 12px;
+            padding: 0 6px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- hero -->
+    <section class="hero">
+        <h1><span>mk</span>体育 · 从这里识别赛事信息</h1>
+        <p>当你打开一个体育信息站点，最想确认的无非三件事：内容范围、更新节奏、使用是否直接。<br>
+        通过<a href="https://webs-mksports.com.cn" style="color:#0a3143; text-decoration:none; border-bottom:1px solid #809bb0;">mk体育</a>，你可以快速建立对赛事资讯入口的基本判断。</p>
+        <div class="tagline">⚡ 围绕体育赛事 · 聚焦信息可读性</div>
+    </section>
+
+    <!-- 优势区 -->
+    <section class="card">
+        <h2>为什么值得关注</h2>
+        <div class="grid-2col">
+            <div class="feature-item">
+                <strong>⏱ 信息焦点</strong>
+                <p>页面围绕体育赛事结构，避免无关干扰，从标题到正文都指向赛事情报。</p>
+            </div>
+            <div class="feature-item">
+                <strong>📂 分类浏览</strong>
+                <p>赛事、联赛、球队等模块划分清晰，适合快速定位自己关心的内容。</p>
+            </div>
+            <div class="feature-item">
+                <strong>📱 阅读适配</strong>
+                <p>响应式布局照顾手机与桌面，信息密度适中，不挤不散。</p>
+            </div>
+            <div class="feature-item">
+                <strong>🔗 直达路径</strong>
+                <p>不需要跳转多层页面，从首页就能理解网站提供什么类型的体育信息。</p>
+            </div>
+        </div>
+        <p style="margin-top:1.2rem; font-size:0.95rem; background:#f5f8fb; border-radius:40px; padding:0.3rem 1rem; display:inline-block;">以上特征均来自对站点结构的观察，不涉及任何主观推荐。</p>
+    </section>
+
+    <!-- 说明区：网站用途识别 -->
+    <section class="card">
+        <h2>如何判断这个网站是否适合你</h2>
+        <p>访问一个体育类信息页面时，多数用户会先看 <span class="soft-highlight">头部导航、内容分类、信息密度</span> 三个区域。<br>
+        在<a href="https://webs-mksports.com.cn" style="color:#1a4b62; text-decoration:none; border-bottom:1px solid #9bb5c6;">mk体育</a>首页，你可以快速扫描到赛事相关标签、近期更新条目以及信息排布方式。如果你希望在一个相对克制的版面中获取赛事动态，这或许是一个合适的起点。</p>
+
+        <h3 style="margin-top:1.8rem;">常见使用场景</h3>
+        <ul>
+            <li>赛前快速浏览对阵与时间——首页通常展示近期焦点</li>
+            <li>回顾赛事结果或比分——按联赛/杯赛分类查找</li>
+            <li>了解某项赛事的赛程框架——不需要注册即可看到基本结构</li>
+        </ul>
+        <p style="margin-top:1rem; font-size:0.95rem; color:#405a6a;">以上场景均基于普通信息消费习惯，不构成任何保证。</p>
+    </section>
+
+    <!-- FAQ 摘要 -->
+    <section class="card">
+        <h2>常见疑问 · 摘要</h2>
+        <div class="faq-item">
+            <div class="faq-q">这个网站主要提供什么内容？</div>
+            <div class="faq-a">体育赛事相关的信息，包括赛程、比分、联赛资料等，页面结构偏向资讯聚合。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">需要注册或下载才能浏览吗？</div>
+            <div class="faq-a">从首页访问情况看，基本内容可以直接浏览，无强制注册门槛。具体功能以实际页面为准。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">移动端体验如何？</div>
+            <div class="faq-a">页面采用适配设计，在手机上阅读排版经过调整，信息层级保持可读。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">mk体育与其他体育站点有何不同？</div>
+            <div class="faq-a">每个站点的信息组织方式不同，<a href="https://webs-mksports.com.cn" style="color:#1c5775; text-decoration:none; border-bottom:1px solid #aac0d0;">mk体育</a>的首页侧重直接展示赛事条目，减少中间页面跳转，具体差异建议自行对比。</div>
+        </div>
+        <p style="margin-top:1.2rem; font-size:0.88rem; color:#5d7689;">FAQ 摘要基于页面结构推测，详细功能请以实际站点为准。</p>
+    </section>
+
+    <!-- 底部链接 -->
+    <div class="footer-links">
+        <a href="https://webs-mksports.com.cn">mk体育</a>
+        <span class="sep">·</span>
+        <span>内容由用户自行判断</span>
+        <span class="sep">·</span>
+        <span>站点信息仅供参考</span>
+        <div class="footer-note">本页仅为介绍性落地页，不构成任何商业引导或承诺。</div>
+    </div>
+
+</div>
+</body>
+</html>
